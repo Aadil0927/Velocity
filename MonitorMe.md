@@ -18,14 +18,18 @@ by <img src="resources/images/velocity.png" width="90" height="30">
   **MonitorMe** has two unique user groups/Actors.
   1. Nurse Station Users / **Kiosk User**
        This user monitors patients on a monitoring screen set up at each nurses station.
+     
+     ![Kiosk User!](/resources/images/KioskUserStory.png "Kiosk User")
        ### Nurse Station Users journey
          * User logs in to Kiosk
          * User observes the patient's vitals which rotate every every 5 seconds
          * User can review history and filter patient vitals through filters
          * User can generate holistic snapshot for a patient and upload it to 'MyMedicalData'
       
-  2. On the go Users / **Mobile Users**
+  3. On the go Users / **Mobile Users**
        This user monitors patients patients through a Push notification on a mobile app.
+
+     ![Mobile User!](/resources/images/MobileUserStory.png "Mobile User")
        ### Mobile Users Journey
          * User downloads and registers through mobile app
          * User receives alerts through push notification
