@@ -64,3 +64,5 @@ by  <img src="resources/images/velocity.png" width="90" height="30">
   The different framework was decided based upon the application requirements to be hosted on Hospital site. A polyglot architecture fits the bill perfectly as we optimizing hardware based on software/system requirements.
 ## Component-Level Architecture
 
+#### Sequence Diagram
+   ![Sequence Diagram!](/resources/images/MonitorMe-Sequence-Diagram.jpg "Sequence Diagram")
