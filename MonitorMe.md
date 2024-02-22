@@ -8,6 +8,8 @@ by  <img src="resources/images/velocity.png" width="90" height="30">
 - User Journey
 - Requirements
 - Design Constraints
+- High-Level Architecture
+- ADRs
 
 ## Overview
   **MonitorMe** is a new patient monitoring product from Stayhealthy Inc. This document describes high-level architecture of MonitorMe’s local-standalone IT infrastructure in hospitals. It documents key requirements and features extracted from clients requirements and research on similar products on market. A software and hardware architecture that satisfies these requirements is presented in this document.
@@ -66,3 +68,41 @@ by  <img src="resources/images/velocity.png" width="90" height="30">
 
 #### Sequence Diagram
    ![Sequence Diagram!](/resources/images/MonitorMe-Sequence-Diagram.jpg "Sequence Diagram")
+
+## ADRs
+#### ADR 1. Platform requirements
+Status: Accepted
+Context: The architecture needs to be hosted on dedicated servers on Hospital Premisis. 
+Decision: The platform of choice a small server farm with DR replica on active-active mode. The server will be divided into multiple compute instances. Ex. VMs, Database servers, K8s Clusters
+Consequences: The implementation is not expected to scale. The division of static resources into different compute/data clusters will accomodate varying architecture proposed
+
+#### ADR 2. Communication protocol
+* Status: Rejected
+* Context: Using stream APIs to read patient vitals 
+* Decision: [Web Stream-API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) to support streaming patient vital. This enables to build UI directly on the Browser without need to invest in native software development.
+* Consequences: This method is not fault tolerant. Which is a major concern.
+
+#### ADR 3. Data Processing Platform
+* Status: Accepted
+* Context: Data processing is a key requirement and needs to be done efficiently
+* Decision: [Kubernetes](https://kubernetes.io/) is proposed to be used for data processing. Configurability can be achieved very effectively and we can scale specific data processing needs as per load.
+* Consequences: This keeps the processing power optimum for data processing which can have varying load. Also since the system expected to have new functionality, adding these features is made easy.
+
+#### ADR 4. Message Queue paltform
+* Status: Accepted
+* Context: In order to provide realtime data from sensors, we need a message queue platform
+* Decision: A highly scalable message engine is required to read data from various sensors and deliver it to Consumers in a pesistent manner. Proposing to use the [Solace](https://solace.com/) application, as it provides multiple ways of integration streaming data. Solace also provides persistent queues and multiple consumer configs to ensure high data fidelity.
+* Consequences: Ease of integration into multiple consumers and fault tolerant
+
+#### ADR 5. Mobile App notification
+* Status: Proposed
+* Context: In order to provide realtime updates on the go, we need a mobile push framework
+* Decision: A highly scalable message engine is required to quickly push notifications to mobile users. Proposing to use the same software [Solace](https://docs.solace.com/API/Messaging-APIs/JavaScript-API/Web-Messaging-Concepts/Web-Messaging-Concepts.htm) used for Message queues to be cost effective and ease of maintainence
+* Consequences: Ease of integration into multiple endpoints for mobile and native framework.
+
+#### ADR 6. Database requirement
+* Status: Proposed
+* Context: Data needs to be persisted and also encrypted.
+* Decision: Any RDBMS/NOSQL DB can be user for this purpose. Proposing RDBMS to store patients vitals as the data is highly structured. It is easy to integrate into multiple data processing micro services
+* Consequences: DB requirement is minimal as this need to store only 1 days data for maximum of 500 patients.
+
