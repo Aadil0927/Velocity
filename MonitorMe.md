@@ -69,6 +69,18 @@ by  <img src="resources/images/velocity.png" width="90" height="30">
 #### Sequence Diagram
    ![Sequence Diagram!](/resources/images/MonitorMe-Sequence-Diagram.jpg "Sequence Diagram")
 
+### Tech Stack Proposed
+  1. MQTT with SOLACE application to gather patient vitals
+  2. Kubernetes with Python microservices for data processing
+  3. SOLACE push notification with Native mobile framework (react-native)
+  4. PostGreQSL/ORACLE for DB with python db connectors
+
+### Hardware Stack Proposed
+  Server farm with below configuration
+  1. 2 sets of VMs for SOLACE , 2 CPU, 8GB RAM, 128GB Storage
+  2. 5 VMs for Kubernetes Cluster , 2*5 CPU, 16*5 GB RAM, 68*5 GB Storage
+  3. 2 VMs for hosting DB , 10 CPU, 16 GB RAM, 512GB storage
+
 ## ADRs
 #### ADR 1. Platform requirements
 Status: Accepted
