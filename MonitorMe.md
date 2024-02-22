@@ -1,5 +1,5 @@
 ## MonitorMe
-by <img src="resources/images/velocity.png" width="90" height="30">
+by  <img src="resources/images/velocity.png" width="90" height="30">
 
 ### Table of Contents
 
