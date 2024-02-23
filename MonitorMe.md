@@ -76,6 +76,7 @@ by  <img src="resources/images/velocity.png" width="90" height="30">
   4. PostGreQSL/ORACLE for DB with python db connectors
 
 ### Hardware Stack Proposed
+  ![Hardware Stack!](/resources/images/Hardware-Stack.png "Hardware Stack")
   Server farm with below configuration
   1. 2 sets of VMs for SOLACE , 2 CPU, 8GB RAM, 128GB Storage
   2. 5 VMs for Kubernetes Cluster , 2*5 CPU, 16*5 GB RAM, 68*5 GB Storage
